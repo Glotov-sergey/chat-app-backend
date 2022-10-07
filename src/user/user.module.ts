@@ -6,6 +6,12 @@ import { Services } from '../utils/constants';
 @Module({
 	imports: [],
 	providers: [{ provide: Services.USER, useClass: UserService }],
-	controllers: [UserController]
+	controllers: [UserController],
+	exports: [
+		{
+			provide: Services.USER,
+			useClass: UserService
+		}
+	]
 })
 export class UserModule {}

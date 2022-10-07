@@ -1,3 +1,6 @@
+import { RegisterDetails } from '../utils/types';
+
 export interface IUserService {
-	sayHello(): string;
+	createUser(createUserDetails: RegisterDetails);
+	findOne(id: number);
 }
