@@ -1,6 +1,6 @@
-import { RegisterDetails } from '../utils/types';
+import { FindUserParams, RegisterDetails } from '../utils/types';
 
 export interface IUserService {
 	createUser(createUserDetails: RegisterDetails);
-	findOne(id: number);
+	findUser(findUserParams: FindUserParams);
 }

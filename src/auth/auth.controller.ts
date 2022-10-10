@@ -1,25 +1,23 @@
-import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
+import { IUserService } from 'src/user/user';
 import { Routes, Services } from '../utils/constants';
 import { IAuthService } from './auth';
 import { RegistrationDto } from './dto/registration.dto';
-import { LoginDto } from './dto/login.dto';
+import { LocalAuthGuard } from './utils/guards';
 
 @Controller(Routes.AUTH)
 export class AuthController {
 	constructor(
-		@Inject(Services.AUTH) private readonly authService: IAuthService
+		@Inject(Services.AUTH) private readonly authService: IAuthService,
+		@Inject(Services.USER) private readonly userService: IUserService
 	) {}
 
-	@Post('/login')
-	login(@Body() loginDto: LoginDto) {
-		// Create Login
-		return 'login';
-	}
-	1;
+	@Post('login')
+	@UseGuards(LocalAuthGuard)
+	login() {}
 	@Post('/register')
 	register(@Body() registrationDto: RegistrationDto) {
-		// Create Register
-		return 'register';
+		return this.userService.createUser(registrationDto);
 	}
 
 	@Get('status')
