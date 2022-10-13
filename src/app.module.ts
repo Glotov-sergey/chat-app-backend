@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import entities from './utils/typeorm';
 import { PassportModule } from '@nestjs/passport';
+import { ConversationModule } from './conversation/conversation.module';
 
 @Module({
 	imports: [
@@ -21,7 +22,8 @@ import { PassportModule } from '@nestjs/passport';
 			synchronize: process.env.NODE_ENV === 'development'
 		}),
 		UserModule,
-		AuthModule
+		AuthModule,
+		ConversationModule
 	]
 })
 export class AppModule {}

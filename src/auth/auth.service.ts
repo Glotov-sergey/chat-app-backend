@@ -1,4 +1,4 @@
-import { Inject, Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { IAuthService } from './auth';
 import { Services } from '../utils/constants';
 import { IUserService } from '../user/user';
@@ -24,12 +24,11 @@ export class AuthService implements IAuthService {
 		if (!user)
 			throw new HttpException('Invalid Credentials', HttpStatus.UNAUTHORIZED);
 
-		return await compareHash(userCredentials.password, user.password);
+		const isValidPassword = await compareHash(
+			userCredentials.password,
+			user.password
+		);
+
+		return isValidPassword ? user : null;
 	}
-
-	// register User
-
-	// login User
-
-	// Logout Uer
 }
