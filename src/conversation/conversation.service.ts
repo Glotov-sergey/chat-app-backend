@@ -1,25 +1,28 @@
-import { Injectable } from "@nestjs/common";
-import { IConversationService } from "./conversation";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Conversation } from "../utils/typeorm/entities/Conversation";
-import {Repository} from "typeorm";
+import { Injectable } from '@nestjs/common';
+import { IConversationService } from './conversation';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Conversation } from '../utils/typeorm/entities/Conversation';
+import { Repository } from 'typeorm';
+import { CreateConverssationDetails } from 'src/utils/types';
 
 @Injectable()
 export class ConversationService implements IConversationService {
-  constructor(@InjectRepository(Conversation) private readonly conversationRepository: Repository<Conversation>) {
-  }
-  createConversation() {
-    // TODO: Implement creating
-    return "Create";
-  }
+	constructor(
+		@InjectRepository(Conversation)
+		private readonly conversationRepository: Repository<Conversation>
+	) {}
 
-  getAll() {
-    // TODO: Implement Get All
-    return "Get all";
-  }
+	createConversation(createConversationDetails: CreateConverssationDetails) {
+		return createConversationDetails;
+	}
 
-  getById() {
-    // TODO: Implement Get by id
-    return "Get by id";
-  }
+	getAll() {
+		// TODO: Implement Get All
+		return 'Get all';
+	}
+
+	getById() {
+		// TODO: Implement Get by id
+		return 'Get by id';
+	}
 }

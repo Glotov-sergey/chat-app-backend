@@ -1,5 +1,9 @@
-import { Entity } from "typeorm";
-import { Base } from "./Base";
+import { Column, Entity, ManyToOne } from 'typeorm';
+import { Base } from './Base';
+import { Participant } from './Participant';
 
-@Entity({name: "conversation"})
-export class Conversation extends Base {}
+@Entity({ name: 'conversations' })
+export class Conversation extends Base {
+	@ManyToOne(() => Participant, (participant) => participant.conversations)
+	chatParticipants: Participant[];
+}

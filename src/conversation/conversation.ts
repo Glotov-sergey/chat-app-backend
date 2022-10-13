@@ -1,5 +1,7 @@
+import { CreateConverssationDetails } from 'src/utils/types';
+
 export interface IConversationService {
-  createConversation();
-  getAll();
-  getById();
+	createConversation(createConverssationDetails: CreateConverssationDetails);
+	getAll();
+	getById();
 }
