@@ -1,15 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { IConversationService } from './conversation';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Conversation } from '../utils/typeorm/entities/Conversation';
-import { Repository } from 'typeorm';
 import { CreateConverssationDetails } from 'src/utils/types';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Conversation, Participant } from 'src/utils/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ConversationService implements IConversationService {
 	constructor(
 		@InjectRepository(Conversation)
-		private readonly conversationRepository: Repository<Conversation>
+		private readonly conversationRepository: Repository<Conversation>,
+		@InjectRepository(Participant)
+		private readonly participantRepository: Repository<Participant>
 	) {}
 
 	createConversation(createConversationDetails: CreateConverssationDetails) {
