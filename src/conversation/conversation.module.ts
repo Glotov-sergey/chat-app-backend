@@ -3,10 +3,16 @@ import { ConversationService } from './conversation.service';
 import { ConversationController } from './conversation.controller';
 import { Services } from 'src/utils/constants';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Conversation, Participant } from 'src/utils/typeorm';
+import { Conversation } from 'src/utils/typeorm';
+import { ParticipantModule } from 'src/participant/participant.module';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
-	imports: [TypeOrmModule.forFeature([Conversation, Participant])],
+	imports: [
+		TypeOrmModule.forFeature([Conversation]),
+		ParticipantModule,
+		UserModule
+	],
 	controllers: [ConversationController],
 	providers: [
 		{

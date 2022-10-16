@@ -1,3 +1,6 @@
+import { Request } from 'express';
+import { User } from './typeorm';
+
 export type RegisterDetails = {
 	email: string;
 	password: string;
@@ -22,3 +25,15 @@ export type CreateConverssationDetails = {
 };
 
 export type ConversationIndentityType = 'author | recipient';
+
+export type FindPartialsParams = Partial<{
+	id: number;
+}>;
+
+export interface AuthenticatedRequest extends Request {
+	user: User;
+}
+
+export type CreateParticipantDetails = {
+	id: number;
+};
