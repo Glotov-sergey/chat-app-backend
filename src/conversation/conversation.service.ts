@@ -30,9 +30,17 @@ export class ConversationService implements IConversationService {
 			userDb.participant = newParticipant;
 			await this.userService.saveUser(userDb);
 		}
-		const recipient = await this.participantService.findParicipant({
+		const recipient = await this.userService.findUser({
 			id: createConversationDetails.recipientId
 		});
+
+		if (!recipient.participant) {
+			const newParticipant = await this.participantService.createParticipant({
+				id: createConversationDetails.recipientId
+			});
+			userDb.participant = newParticipant;
+			await this.userService.saveUser(userDb);
+		}
 	}
 
 	getAll() {
